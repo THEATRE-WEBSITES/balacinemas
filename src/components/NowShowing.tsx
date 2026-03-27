@@ -51,7 +51,7 @@ export default function NowShowing() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.15, duration: 0.6 }}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="glass-card rounded-xl overflow-hidden group cursor-pointer transition-all hover:glow-gold w-[85%] sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-[280px] sm:max-w-sm"
+              className="glass-card rounded-xl overflow-hidden group cursor-pointer transition-all hover:glow-gold w-[85%] sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-[280px]"
             >
               <div className="relative aspect-[2/3] overflow-hidden">
                 <img

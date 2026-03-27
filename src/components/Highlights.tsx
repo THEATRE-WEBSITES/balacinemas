@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { Volume2, Armchair, UtensilsCrossed, Car, Zap } from 'lucide-react';
+import useEmblaCarousel from "embla-carousel-react";
+import AutoScroll from "embla-carousel-auto-scroll";
 
 const features = [
   {
@@ -48,6 +50,18 @@ const marqueeImages = [
 ];
 
 export default function Highlights() {
+  const [emblaRef] = useEmblaCarousel(
+    { loop: true, dragFree: true },
+    [
+      AutoScroll({
+        playOnInit: true,
+        stopOnInteraction: false,
+        stopOnMouseEnter: true,
+        speed: 0.6,
+      }),
+    ]
+  );
+
   return (
     <section className="py-20 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_rgba(212,175,55,0.07)_0%,_transparent_60%)]" />
@@ -68,51 +82,36 @@ export default function Highlights() {
         </motion.div>
       </div>
 
-      {/* ── Infinite Marquee Strip ── */}
+      {/* ── Infinite Swipable Marquee Strip ── */}
       <div className="relative w-full overflow-hidden mt-8 mb-16">
         {/* Left fade */}
         <div className="pointer-events-none absolute left-0 top-0 h-full w-24 z-10 bg-gradient-to-r from-background to-transparent" />
         {/* Right fade */}
         <div className="pointer-events-none absolute right-0 top-0 h-full w-24 z-10 bg-gradient-to-l from-background to-transparent" />
 
-        <motion.div 
-          className="flex gap-4 w-max"
-          animate={{ x: [0, -1000] }} // We'll use a percentage based translation below 
-          style={{ width: 'max-content' }}
-        >
-          {/* Framer motion marquee implementation */}
-          <motion.div
-            className="flex gap-4"
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{
-              x: {
-                repeat: Infinity,
-                repeatType: "loop",
-                duration: 60, // 60 seconds - very slow and cinematic
-                ease: "linear",
-              },
-            }}
-          >
+        <div className="overflow-hidden cursor-grab active:cursor-grabbing" ref={emblaRef}>
+          <div className="flex gap-4 px-4">
             {marqueeImages.map((img, i) => (
               <div
                 key={i}
-                className="relative flex-shrink-0 w-72 h-44 rounded-xl overflow-hidden group"
+                className="relative flex-[0_0_18rem] h-44 rounded-xl overflow-hidden group select-none"
                 style={{ border: '1px solid rgba(212,175,55,0.2)' }}
               >
                 <img
                   src={img.src}
                   alt={img.label}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-700 pointer-events-none group-hover:scale-110"
+                  draggable={false}
                 />
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                <span className="absolute bottom-3 left-4 font-tech text-xs tracking-widest text-primary uppercase">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none" />
+                <span className="absolute bottom-3 left-4 font-tech text-xs tracking-widest text-primary uppercase pointer-events-none">
                   {img.label}
                 </span>
               </div>
             ))}
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
 
       {/* ── Feature Cards ── */}

@@ -17,8 +17,11 @@ export default function HeroSection() {
           <source src="/hero.mp4" type="video/mp4" />
         </video>
         {/* Lighter dark overlay to keep text readable but show more video */}
-        <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background/80 relative z-10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-transparent z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background/60 z-10" />
+        
+        {/* Seamless bottom-to-background gradient transition */}
+        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-background to-transparent z-20 pointer-events-none" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">

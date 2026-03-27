@@ -7,14 +7,25 @@ export default function HeroSection() {
     <section className="relative min-h-screen flex items-center overflow-hidden pt-16">
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
+        {/* Desktop Video */}
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover hidden md:block"
         >
           <source src="/hero.mp4" type="video/mp4" />
+        </video>
+        {/* Mobile Video */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover block md:hidden"
+        >
+          <source src="/hero2.mp4" type="video/mp4" />
         </video>
         {/* Lighter dark overlay to keep text readable but show more video */}
         <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-transparent z-10" />

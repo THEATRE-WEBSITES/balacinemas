@@ -42,7 +42,7 @@ export default function NowShowing() {
           <h2 className="font-display text-3xl md:text-5xl font-bold">Now Showing</h2>
         </motion.div>
 
-        <div className="flex flex-wrap justify-center gap-6">
+        <div className="flex flex-wrap justify-center items-stretch gap-6">
           {movies.map((movie, i) => (
             <motion.div
               key={movie.title}
@@ -51,7 +51,7 @@ export default function NowShowing() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.15, duration: 0.6 }}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="glass-card rounded-xl overflow-hidden group cursor-pointer transition-all hover:glow-gold w-[85%] sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-[280px]"
+              className="glass-card rounded-xl overflow-hidden group cursor-pointer transition-all hover:glow-gold flex flex-col w-[85%] sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-[280px]"
             >
               <div className="relative aspect-[2/3] overflow-hidden">
                 <img
@@ -65,8 +65,8 @@ export default function NowShowing() {
                 </div>
               </div>
 
-              <div className="p-4 flex flex-col h-[calc(100%-150%)] justify-between">
-                <div>
+              <div className="p-4 flex flex-col flex-1">
+                <div className="mb-4">
                   <h3 className="font-display text-lg font-bold mb-1">{movie.title}</h3>
                   <span className="text-xs font-tech text-primary mb-3 block">{movie.language}</span>
 
@@ -83,7 +83,7 @@ export default function NowShowing() {
                   href={movie.bookUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full text-center py-2.5 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:bg-gold-bright transition-all active:scale-95"
+                  className="mt-auto block w-full text-center py-2.5 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:bg-gold-bright transition-all active:scale-95"
                 >
                   Book Now
                 </a>
